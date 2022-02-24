@@ -7,14 +7,15 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 if(!function_exists('sendMessage')){
     function sendMessage($arr)
     {
-        try
-        {
+//        try
+//        {
             return Telegram::sendMessage($arr);
-        }
-        catch(TelegramResponseException $e)
-        {
-            return "user has been blocked!";
-        }
+//        }
+//        catch(TelegramResponseException $e)
+//        {
+//
+//            return "user has been blocked!";
+//        }
     }
 }
 
