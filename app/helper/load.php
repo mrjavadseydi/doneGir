@@ -1,21 +1,19 @@
 <?php
 
 use Telegram\Bot\Exceptions\TelegramResponseException;
-use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Laravel\Facades\Telegram;
-
+require_once __DIR__.'/keyboard.php';
 if(!function_exists('sendMessage')){
     function sendMessage($arr)
     {
-//        try
-//        {
+        try
+        {
             return Telegram::sendMessage($arr);
-//        }
-//        catch(TelegramResponseException $e)
-//        {
-//
-//            return "user has been blocked!";
-//        }
+        }
+        catch(TelegramResponseException $e)
+        {
+            return "user has been blocked!";
+        }
     }
 }
 

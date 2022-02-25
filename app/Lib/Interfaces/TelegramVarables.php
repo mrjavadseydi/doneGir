@@ -19,5 +19,6 @@ abstract class TelegramVarables
             $this->from_id = $update['message']['from']['id'] ?? "";
         }
 
+
     }
 }
