@@ -2,7 +2,7 @@
 
 use Telegram\Bot\Keyboard\Keyboard;
 
-function mainMenu($isVip)
+function mainMenu($isVip=false)
 {
 
     $home = [
@@ -40,10 +40,12 @@ function mainMenu($isVip)
         ]
     ];
     if($isVip){
-        return Keyboard::make($vip_home);
+        $key = Keyboard::button($vip_home);
     }else{
-        return Keyboard::make($home);
+        $key = Keyboard::button($home);
     }
+    return Keyboard::make(['keyboard' => $key, 'resize_keyboard' => true, 'one_time_keyboard' => true]);
+
 }
 
 if (!function_exists('menuButton')) {

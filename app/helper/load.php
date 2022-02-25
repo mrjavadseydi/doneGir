@@ -1,68 +1,70 @@
 <?php
 
+use App\Models\Config as Config;
 use App\Models\Member as Member;
 use Telegram\Bot\Exceptions\TelegramResponseException;
 use Telegram\Bot\Laravel\Facades\Telegram;
-require_once __DIR__.'/keyboard.php';
-if(!function_exists('sendMessage')){
+use \Illuminate\Support\Facades\Cache;
+require_once __DIR__ . '/keyboard.php';
+if (!function_exists('sendMessage')) {
     function sendMessage($arr)
     {
-        try
-        {
+//        try {
             return Telegram::sendMessage($arr);
-        }
-        catch(TelegramResponseException $e)
-        {
-            return "user has been blocked!";
-        }
+//        } catch (TelegramResponseException $e) {
+//            return "user has been blocked!";
+//        }
     }
 }
 
-if(!function_exists('joinCheck')){
-    function joinCheck($chat_id,$user_id)
+if (!function_exists('joinCheck')) {
+    function joinCheck($chat_id, $user_id)
     {
-        try{
-            $data =  Telegram::getChatMember([
-                'user_id'=>$user_id,
-                'chat_id'=>$chat_id
+        try {
+            $data = Telegram::getChatMember([
+                'user_id' => $user_id,
+                'chat_id' => $chat_id
             ]);
-            if($data['ok']==false || $data['result']['status'] == "left" || $data['result']['status']== "kicked"){
-                return  false;
+            if ($data['ok'] == false || $data['result']['status'] == "left" || $data['result']['status'] == "kicked") {
+                return false;
             }
             return true;
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return false;
         }
     }
 }
-if (!function_exists('editMessageText')){
-    function editMessageText($arr){
-        try{
+if (!function_exists('editMessageText')) {
+    function editMessageText($arr)
+    {
+        try {
             return Telegram::editMessageText($arr);
-        }catch (Exception $e){
+        } catch (Exception $e) {
 
         }
     }
 }
-if (!function_exists('sendPhoto')){
-    function sendPhoto($arr){
-        try{
+if (!function_exists('sendPhoto')) {
+    function sendPhoto($arr)
+    {
+        try {
             return Telegram::sendPhoto($arr);
-        }catch (Exception $e){
+        } catch (Exception $e) {
 
         }
     }
 }
-if (!function_exists('deleteMessage')){
-    function deleteMessage($arr){
-        try{
+if (!function_exists('deleteMessage')) {
+    function deleteMessage($arr)
+    {
+        try {
             return Telegram::deleteMessage($arr);
-        }catch (Exception $e){
+        } catch (Exception $e) {
 
         }
     }
 }
-if(!function_exists('messageType')) {
+if (!function_exists('messageType')) {
     function messageType($arr = [])
     {
         if (!isset($arr['message']['from']['id']) & !isset($arr['callback_query'])) {
@@ -87,16 +89,32 @@ if(!function_exists('messageType')) {
         }
     }
 }
-function devLog($update){
+function devLog($update)
+{
     sendMessage([
-        'chat_id'=>1389610583,
-        'text'=>print_r($update,true)
+        'chat_id' => 1389610583,
+        'text' => print_r($update, true)
     ]);
 }
-function setState($chat_id,$state=null){
-    Member::where('chat_id',$chat_id)->update(['state'=>$state]);
+
+function setState($chat_id, $state = null)
+{
+    Member::where('chat_id', $chat_id)->update(['state' => $state]);
 }
 
-function getState($chat_id){
-    return Member::where('chat_id',$chat_id)->first()->state;
+function getState($chat_id)
+{
+    return Member::where('chat_id', $chat_id)->first()->state;
+}
+
+function getConfig($key)
+{
+    return Cache::remember('config_' . $key, 60, function () use ($key) {
+        return Config::where('key', $key)->first()->value;
+    });
+}
+function setConfig($key, $value)
+{
+    Config::query()->updateOrCreate(['key' => $key], ['value' => $value]);
+    Cache::has('config_'.$key)?Cache::forget('config_' . $key):null;
 }
