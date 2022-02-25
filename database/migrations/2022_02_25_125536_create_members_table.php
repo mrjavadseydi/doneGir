@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('chat_id');
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->double('balance')->default(0);
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

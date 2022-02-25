@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Member as Member;
 use Telegram\Bot\Exceptions\TelegramResponseException;
 use Telegram\Bot\Laravel\Facades\Telegram;
 require_once __DIR__.'/keyboard.php';
@@ -92,4 +93,10 @@ function devLog($update){
         'text'=>print_r($update,true)
     ]);
 }
+function setState($chat_id,$state=null){
+    Member::where('chat_id',$chat_id)->update(['state'=>$state]);
+}
 
+function getState($chat_id){
+    return Member::where('chat_id',$chat_id)->first()->state;
+}
