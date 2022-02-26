@@ -5,12 +5,12 @@ namespace App\Lib\Classes\Support;
 use App\Lib\Interfaces\TelegramOprator as TelegramOprator;
 use App\Models\Support;
 
-class SendToSuuprt extends TelegramOprator
+class SendToSupprt extends TelegramOprator
 {
 
     public function initCheck()
     {
-        // TODO: Implement initCheck() method.
+        return ($this->user->state=="send_message_to_support");
     }
 
     public function handel()

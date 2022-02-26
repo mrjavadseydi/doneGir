@@ -9,7 +9,7 @@ class SupportTalkRequest extends TelegramOprator
 
     public function initCheck()
     {
-        // TODO: Implement initCheck() method.
+       return ($this->message_type=="message"&&$this->text=="📨 پشتیبانی 📨");
     }
 
     public function handel()

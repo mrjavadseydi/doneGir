@@ -9,7 +9,7 @@ class GetShot extends TelegramOprator
 
     public function initCheck()
     {
-        // TODO: Implement initCheck() method.
+        return ($this->message_type=="message"&&($this->text=="🖼 ارسال شات 🖼"||$this->text=="🔱 ارسال شات 🔱"));
     }
 
     public function handel()

@@ -5,10 +5,21 @@ return[
             \App\Lib\Classes\Start::class,
         ],
         2=>[
-
+            \App\Lib\Classes\Done\SubmitDone::class,
+            \App\Lib\Classes\Vip\VipPassword::class,
+            \App\Lib\Classes\Support\SendToSupprt::class,
+            \App\Lib\Classes\Shot\ChoseShotType::class,
+            \App\Lib\Classes\Shot\SendShot::class,
+            \App\Lib\Classes\Shot\SubmitShot::class,
+            \App\Lib\Classes\Done\SubmitDone::class,
         ],
         3=>[
-
+            \App\Lib\Classes\Banner\GetBanner::class,
+            \App\Lib\Classes\Done\GetDone::class,
+            \App\Lib\Classes\Price\GetPrice::class,
+            \App\Lib\Classes\Vip\EnterToVip::class,
+            \App\Lib\Classes\Shot\GetShot::class,
+            \App\Lib\Classes\Support\SupportTalkRequest::class,
         ]
     ]
 ];

@@ -10,7 +10,7 @@ class ChoseShotType extends TelegramOprator
 
     public function initCheck()
     {
-        // TODO: Implement initCheck() method.
+        return ($this->user->state=="shot_type");
     }
 
     public function handel()

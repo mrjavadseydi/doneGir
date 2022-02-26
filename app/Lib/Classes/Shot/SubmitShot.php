@@ -11,7 +11,8 @@ class SubmitShot extends TelegramOprator
 
     public function initCheck()
     {
-        // TODO: Implement initCheck() method.
+        return ($this->user->state=="send_shot");
+
     }
 
     public function handel()

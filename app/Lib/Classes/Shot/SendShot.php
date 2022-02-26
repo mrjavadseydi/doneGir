@@ -10,7 +10,7 @@ class SendShot extends TelegramOprator
 
     public function initCheck()
     {
-        // TODO: Implement initCheck() method.
+        return ($this->message_type=="message"||$this->text=="'اتمام و ارسال");
     }
 
     public function handel()

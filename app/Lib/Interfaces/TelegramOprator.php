@@ -8,7 +8,7 @@ abstract class TelegramOprator extends TelegramVarables
     public function __construct($update)
     {
         parent::__construct($update);
-        if ($this->initCheck()) {
+        if ($this->initCheck()==true) {
             $this->handel();
             $this->class_status =  true;
 
