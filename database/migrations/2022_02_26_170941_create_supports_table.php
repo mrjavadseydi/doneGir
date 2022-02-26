@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
+            $table->string('chat_id');
+            $table->string('message_id');
+            $table->string('group_id');
             $table->timestamps();
         });
     }

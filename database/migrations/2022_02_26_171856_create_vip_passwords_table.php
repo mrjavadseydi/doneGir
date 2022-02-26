@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('vip_passwords', function (Blueprint $table) {
             $table->id();
+            $table->string('chat_id');
+            $table->string('passcode');
             $table->timestamps();
         });
     }
