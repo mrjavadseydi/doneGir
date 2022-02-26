@@ -60,6 +60,42 @@ if (!function_exists('backButton')) {
         return Keyboard::make(['keyboard' => $btn, 'resize_keyboard' => true, 'one_time_keyboard' => true]);
     }
 }
+if (!function_exists('shotTypeButton')) {
+    function shotTypeButton($analize=false)
+    {
+        if ($analize){
+            $row = [
+                'شات داف',
+                'شات عمومی',
+                'شات انالیز',
+            ];
+        }else{
+            $row = [
+                'شات داف',
+                'شات عمومی',
+            ];
+        }
+        $btn = Keyboard::button(
+            [
+                $row,
+                ['بازگشت ↪️']
+            ]
+        );
+        return Keyboard::make(['keyboard' => $btn, 'resize_keyboard' => true, 'one_time_keyboard' => true]);
+    }
+}
+if (!function_exists('shotBackButton')) {
+    function shotBackButton()
+    {
+        $btn = Keyboard::button(
+            [
+                ['اتمام و ارسال'],
+                ['حذف شات و بازگشت']
+            ]
+        );
+        return Keyboard::make(['keyboard' => $btn, 'resize_keyboard' => true, 'one_time_keyboard' => true]);
+    }
+}
 if (!function_exists('activateUser')) {
     function activateUser($id, $chat_id)
     {

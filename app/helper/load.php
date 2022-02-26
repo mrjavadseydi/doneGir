@@ -16,6 +16,16 @@ if (!function_exists('sendMessage')) {
 //        }
     }
 }
+if (!function_exists('sendMediaGroup')) {
+    function sendMediaGroup($arr)
+    {
+//        try {
+            return Telegram::sendMediaGroup($arr);
+//        } catch (TelegramResponseException $e) {
+//            return "user has been blocked!";
+//        }
+    }
+}
 if (!function_exists('sendVideo')) {
     function sendVideo($arr)
     {
@@ -137,4 +147,19 @@ function setConfig($key, $value)
 {
     Config::query()->updateOrCreate(['key' => $key], ['value' => $value]);
     Cache::has('config_'.$key)?Cache::forget('config_' . $key):null;
+}
+function shotType(){
+    $allowed = [
+        'شات داف',
+        'شات عمومی',
+
+    ];;
+    if (getConfig('analize')) {
+        $allowed = [
+            'شات داف',
+            'شات عمومی',
+            'شات انالیز',
+        ];
+    }
+    return $allowed;
 }
