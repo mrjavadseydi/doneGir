@@ -20,6 +20,7 @@ class SendShot extends TelegramOprator
             ->append("[$this->chat_id](tg://user?id=$this->chat_id)")
             ->append("\n {$this->user->first_name} {$this->user->last_name}")
             ->append("\n {$this->user->username}")
+            ->append("\n")
             ->append("نوع شات:")
             ->append($shots[0]['type']);
         if (count($shots) == 1) {

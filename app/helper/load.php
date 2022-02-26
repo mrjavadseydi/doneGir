@@ -5,12 +5,26 @@ use App\Models\Member as Member;
 use Telegram\Bot\Exceptions\TelegramResponseException;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use \Illuminate\Support\Facades\Cache;
+use Telegram\Bot\Objects\Message as MessageObject;
+
 require_once __DIR__ . '/keyboard.php';
 if (!function_exists('sendMessage')) {
     function sendMessage($arr)
     {
 //        try {
             return Telegram::sendMessage($arr);
+//        } catch (TelegramResponseException $e) {
+//            return "user has been blocked!";
+//        }
+    }
+}
+if (!function_exists('copyMessage')) {
+    function copyMessage($arr)
+    {
+//        try {
+            $object = new CustomMethod();
+            return $object->copyMessage($arr);
+
 //        } catch (TelegramResponseException $e) {
 //            return "user has been blocked!";
 //        }
