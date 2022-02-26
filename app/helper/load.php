@@ -16,6 +16,26 @@ if (!function_exists('sendMessage')) {
 //        }
     }
 }
+if (!function_exists('sendVideo')) {
+    function sendVideo($arr)
+    {
+//        try {
+            return Telegram::sendVideo($arr);
+//        } catch (TelegramResponseException $e) {
+//            return "user has been blocked!";
+//        }
+    }
+}
+if (!function_exists('sendDocument')) {
+    function sendDocument($arr)
+    {
+//        try {
+            return Telegram::sendDocument($arr);
+//        } catch (TelegramResponseException $e) {
+//            return "user has been blocked!";
+//        }
+    }
+}
 
 if (!function_exists('joinCheck')) {
     function joinCheck($chat_id, $user_id)

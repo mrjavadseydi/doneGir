@@ -44,21 +44,17 @@ function mainMenu($isVip=false)
     }else{
         $key = Keyboard::button($home);
     }
-    return Keyboard::make(['keyboard' => $key, 'resize_keyboard' => true, 'one_time_keyboard' => true]);
+    return Keyboard::make(['keyboard' => $key, 'resize_keyboard' => true, 'one_time_keyboard' => false]);
 
 }
 
-if (!function_exists('menuButton')) {
-    function menuButton()
+if (!function_exists('backButton')) {
+    function backButton()
     {
 
         $btn = Keyboard::button(
             [
-                ['💰 فروش به ما', '💳 خرید از ما'],
-                ['💸 خرید/فروش های من', '📄 نرخ ارزها'],
-                ['⁉️ سوالات متداول', '💡 راهنما'],
-                ['📞 تماس با ما', '👮 قوانین و مقررات'],
-                ['👤 پروفایل کاربری']
+                ['بازگشت ↪️']
             ]
         );
         return Keyboard::make(['keyboard' => $btn, 'resize_keyboard' => true, 'one_time_keyboard' => true]);
